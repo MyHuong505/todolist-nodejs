@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Create from "./Create";
 import axios from "axios";
-import { FaTrash, FaCircle, FaCheckCircle } from "react-icons/fa";
+import { FaRegTrashAlt, FaRegCircle, FaCheckCircle } from "react-icons/fa";
 
 function Home() {
   const [todos, setTodos] = useState([]);
@@ -32,7 +32,12 @@ function Home() {
 
   return (
     <div className="home">
-      <h2>Todo List</h2>
+      <div className="header">
+        <h2 className="header-title">
+          <span class="yellow-text">To</span>
+          <span class="blue-text">do</span>
+        </h2>
+      </div>
       <Create />
       {todos.length === 0 ? (
         <div>{<h2>No Record</h2>}</div>
@@ -41,9 +46,9 @@ function Home() {
           <div className="task">
             <div className="checkbox" onClick={() => handleEdit(todo._id)}>
               {todo.done ? (
-                <FaCheckCircle className="icon" />
+                <FaCheckCircle className="icon done-icon" />
               ) : (
-                <FaCircle className="icon" />
+                <FaRegCircle className="icon not-done-icon" />
               )}
               <span className={todo.done ? "line_through" : ""}>
                 {todo.task}
@@ -51,8 +56,8 @@ function Home() {
             </div>
             <div>
               <span>
-                <FaTrash
-                  className="icon"
+                <FaRegTrashAlt
+                  className="icon trash-bin"
                   onClick={() => handleDelte(todo._id)}
                 />
               </span>

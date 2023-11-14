@@ -12,16 +12,20 @@ function Home() {
       .catch((err) => console.log(err));
   }, []);
 
-  const handleEdit = (id) => {
-    axios
-      .put("http://localhost:3200/" + id)
-      .then((result) => {
-        window.location.reload();
-      })
-      .catch((err) => console.log(err));
+  const handleCheck = (id, event) => {
+    const clickedOnIcon = event.target.classList.contains("icon");
+
+    if (clickedOnIcon) {
+      axios
+        .put("http://localhost:3200/" + id)
+        .then((result) => {
+          window.location.reload();
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
-  const handleDelte = (id) => {
+  const handleDelete = (id) => {
     axios
       .delete("http://localhost:3200/" + id)
       .then((result) => {
@@ -44,7 +48,7 @@ function Home() {
       ) : (
         todos.map((todo) => (
           <div className="task">
-            <div className="checkbox" onClick={() => handleEdit(todo._id)}>
+            <div className="checkbox" onClick={(e) => handleCheck(todo._id, e)}>
               {todo.done ? (
                 <FaCheckCircle className="icon done-icon" />
               ) : (
@@ -54,11 +58,12 @@ function Home() {
                 {todo.task}
               </span>
             </div>
+
             <div>
               <span>
                 <FaRegTrashAlt
                   className="icon trash-bin"
-                  onClick={() => handleDelte(todo._id)}
+                  onClick={() => handleDelete(todo._id)}
                 />
               </span>
             </div>

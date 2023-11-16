@@ -18,6 +18,9 @@
   background-color: #0d0d0d;
   margin-bottom: 36px;
 }
+.header-title {
+  color: #f2f2f2;
+}
 .yellow-text {
   color: #dec74e;
 }
@@ -95,6 +98,7 @@
   color: #dec74e;
 }
 
-.trash-bin {
+.trash-bin,
+.edit-icon {
   color: #5f5f5f;
 }
